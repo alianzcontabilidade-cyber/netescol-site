@@ -1615,6 +1615,11 @@ body {
   50% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.6); }
 }
 
+/* ===== LOGO SVG ===== */
+.nav-logo-svg { height: 36px; width: auto; }
+.hero-logo-svg { height: 80px; width: auto; }
+.footer-logo-svg { height: 40px; width: auto; margin-bottom: 12px; }
+
 /* ===== BOTAO SISTEMA NAVBAR ===== */
 .nav-sistema {
   background: linear-gradient(135deg, var(--primary), var(--primary-light)) !important;
