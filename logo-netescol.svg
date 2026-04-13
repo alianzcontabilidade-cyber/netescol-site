@@ -1,16 +1,22 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 100" fill="none">
-  <text x="0" y="58" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="56" font-weight="800" letter-spacing="-1">
-    <tspan fill="#ffffff">NetEsc</tspan>
-  </text>
-  <!-- 3 barras crescentes (azul claro, verde, azul escuro) -->
-  <rect x="248" y="36" width="8" height="22" rx="2" fill="#60a5fa"/>
-  <rect x="260" y="24" width="8" height="34" rx="2" fill="#22c55e"/>
-  <rect x="272" y="10" width="8" height="48" rx="2" fill="#93c5fd"/>
-  <!-- Seta para cima -->
-  <path d="M252 34 L276 8" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round"/>
-  <path d="M269 5 L280 8 L274 17" fill="#22c55e"/>
-  <!-- Subtitulo -->
-  <text x="2" y="84" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="17" font-weight="300" fill="#94a3b8" letter-spacing="1.5">
-    Gestão Escolar Inteligente
-  </text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 100" fill="none">
+  <!-- "Net" -->
+  <text x="0" y="62" font-family="'Inter','Segoe UI',Arial,sans-serif" font-size="60" font-weight="800" letter-spacing="-1" fill="#ffffff">Net</text>
+  <!-- "Esc" -->
+  <text x="122" y="62" font-family="'Inter','Segoe UI',Arial,sans-serif" font-size="60" font-weight="800" letter-spacing="-1" fill="#ffffff">Esc</text>
+  <!-- Chart bars (replaces "o") -->
+  <g transform="translate(260, 8)">
+    <rect x="6" y="30" width="7" height="14" rx="2" fill="#22c55e" opacity="0.5"/>
+    <rect x="16" y="22" width="7" height="22" rx="2" fill="#22c55e" opacity="0.7"/>
+    <rect x="26" y="12" width="7" height="32" rx="2" fill="#4ade80"/>
+    <rect x="36" y="4" width="7" height="40" rx="2" fill="#22d3ee"/>
+    <!-- Trend arrow -->
+    <path d="M8 28 L38 4" stroke="#4ade80" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/>
+    <!-- Graduation cap -->
+    <path d="M24 2 L36 7 L24 12 L12 7 Z" fill="#22d3ee" opacity="0.9"/>
+    <line x1="24" y1="12" x2="24" y2="18" stroke="#22d3ee" stroke-width="2" opacity="0.7"/>
+  </g>
+  <!-- "l" -->
+  <text x="312" y="62" font-family="'Inter','Segoe UI',Arial,sans-serif" font-size="60" font-weight="800" letter-spacing="-1" fill="#ffffff">l</text>
+  <!-- Subtitle -->
+  <text x="2" y="88" font-family="'Inter','Segoe UI',Arial,sans-serif" font-size="17" font-weight="300" fill="#94a3b8" letter-spacing="2">Gestão Escolar Inteligente</text>
 </svg>
