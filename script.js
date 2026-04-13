@@ -1,3 +1,4 @@
+// Navbar scroll effect + Progress bar + Back to top
 const navbar = document.getElementById('navbar');
 const scrollProgress = document.getElementById('scrollProgress');
 const backToTop = document.getElementById('backToTop');
@@ -7,17 +8,11 @@ window.addEventListener('scroll', () => {
   const docHeight = document.documentElement.scrollHeight - window.innerHeight;
   const scrollPercent = (scrollTop / docHeight) * 100;
 
-  // Navbar shadow
   navbar.classList.toggle('scrolled', scrollTop > 20);
-
-  // Progress bar
   scrollProgress.style.width = scrollPercent + '%';
-
-  // Back to top button
   backToTop.classList.toggle('visible', scrollTop > 500);
 });
 
-// Back to top click
 backToTop.addEventListener('click', () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
@@ -29,7 +24,6 @@ mobileBtn.addEventListener('click', () => {
   navLinks.classList.toggle('active');
 });
 
-// Close mobile menu on link click
 navLinks.querySelectorAll('a').forEach(link => {
   link.addEventListener('click', () => navLinks.classList.remove('active'));
 });
@@ -47,7 +41,6 @@ document.querySelectorAll('.faq-question').forEach(btn => {
 // Animated counter
 function animateCounter(el, target, suffix) {
   const duration = 2000;
-  const start = 0;
   const startTime = performance.now();
 
   function update(currentTime) {
@@ -67,7 +60,6 @@ const observer = new IntersectionObserver((entries) => {
     if (entry.isIntersecting) {
       entry.target.classList.add('visible');
 
-      // Trigger counter animation for stat numbers
       if (entry.target.classList.contains('stat-item')) {
         const numEl = entry.target.querySelector('.stat-number');
         if (numEl && !numEl.dataset.animated) {
@@ -93,3 +85,25 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   });
+});
+
+// Active nav link highlight on scroll
+const sections = document.querySelectorAll('section[id]');
+window.addEventListener('scroll', () => {
+  const scrollPos = window.scrollY + 100;
+  sections.forEach(section => {
+    const top = section.offsetTop;
+    const height = section.offsetHeight;
+    const id = section.getAttribute('id');
+    const link = document.querySelector('.nav-links a[href="#' + id + '"]');
+    if (link) {
+      if (scrollPos >= top && scrollPos < top + height) {
+        link.style.color = 'var(--primary)';
+        link.style.fontWeight = '700';
+      } else {
+        link.style.color = '';
+        link.style.fontWeight = '';
+      }
+    }
+  });
+});
