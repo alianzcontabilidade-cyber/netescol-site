@@ -1,0 +1,1526 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NetEscol - Sistema de Gestao Escolar Municipal</title>
+  <meta name="description" content="NetEscol - Plataforma completa de gestao escolar municipal. Alunos, transporte, merenda, notas, frequencia e muito mais em um so lugar.">
+  <meta name="keywords" content="gestao escolar, transporte escolar, sistema educacional, prefeitura, escola municipal">
+  <meta name="theme-color" content="#1B3A5C">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary: #1B3A5C;
+      --primary-light: #2A5A8C;
+      --primary-dark: #0F2440;
+      --accent: #10B981;
+      --accent-light: #34D399;
+      --accent-dark: #059669;
+      --bg: #F8FAFC;
+      --bg-alt: #EBF4FF;
+      --text: #1E293B;
+      --text-light: #64748B;
+      --white: #FFFFFF;
+      --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+      --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+      --shadow-xl: 0 25px 50px -12px rgba(0,0,0,0.25);
+      --radius: 12px;
+      --radius-lg: 20px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ===== NAVBAR ===== */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(27,58,92,0.08);
+      transition: all 0.3s ease;
+    }
+
+    .navbar.scrolled {
+      box-shadow: var(--shadow);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--primary);
+    }
+
+    .nav-logo-icon {
+      width: 42px;
+      height: 42px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 20px;
+    }
+
+    .nav-logo-text {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .nav-logo-text span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-light);
+      font-weight: 500;
+      font-size: 15px;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--primary); }
+
+    .nav-cta {
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      color: white !important;
+      padding: 10px 24px;
+      border-radius: 8px;
+      font-weight: 600 !important;
+      transition: transform 0.2s, box-shadow 0.2s !important;
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(16,185,129,0.4);
+    }
+
+    .nav-sistema {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white !important;
+      padding: 10px 24px;
+      border-radius: 8px;
+      font-weight: 600 !important;
+      transition: transform 0.2s, box-shadow 0.2s !important;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-sistema::before {
+      content: '\1F512';
+      font-size: 14px;
+    }
+
+    .nav-sistema:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(27,58,92,0.4);
+      color: white !important;
+    }
+
+    .nav-mobile-btn {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+    }
+
+    .nav-mobile-btn span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--primary);
+      margin: 6px 0;
+      transition: all 0.3s;
+      border-radius: 2px;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 40%, var(--primary-light) 100%);
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, rgba(16,185,129,0.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      left: -10%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .hero-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 120px 24px 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 6px 16px;
+      border-radius: 100px;
+      color: var(--accent-light);
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 24px;
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-badge::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      background: var(--accent-light);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .hero h1 {
+      font-size: clamp(36px, 5vw, 56px);
+      font-weight: 900;
+      color: white;
+      line-height: 1.1;
+      margin-bottom: 24px;
+      letter-spacing: -1px;
+    }
+
+    .hero h1 .highlight {
+      background: linear-gradient(135deg, var(--accent-light), #6EE7B7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-desc {
+      font-size: 18px;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 40px;
+      max-width: 520px;
+      line-height: 1.7;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 32px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      color: white;
+      box-shadow: 0 4px 15px rgba(16,185,129,0.4);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(16,185,129,0.5);
+    }
+
+    .btn-outline {
+      background: rgba(255,255,255,0.1);
+      color: white;
+      border: 2px solid rgba(255,255,255,0.3);
+      backdrop-filter: blur(10px);
+    }
+
+    .btn-outline:hover {
+      background: rgba(255,255,255,0.2);
+      border-color: rgba(255,255,255,0.5);
+    }
+
+    /* Hero Visual */
+    .hero-visual {
+      position: relative;
+    }
+
+    .hero-dashboard {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-xl);
+      overflow: hidden;
+      transform: perspective(1000px) rotateY(-5deg) rotateX(2deg);
+      transition: transform 0.5s ease;
+    }
+
+    .hero-dashboard:hover {
+      transform: perspective(1000px) rotateY(0) rotateX(0);
+    }
+
+    .dashboard-header {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .dashboard-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .dashboard-dots span {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+    }
+
+    .dashboard-dots span:first-child { background: #EF4444; }
+    .dashboard-dots span:nth-child(2) { background: #F59E0B; }
+    .dashboard-dots span:nth-child(3) { background: #10B981; }
+
+    .dashboard-title {
+      color: rgba(255,255,255,0.9);
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .dashboard-body {
+      padding: 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .dash-card {
+      background: var(--bg);
+      border-radius: var(--radius);
+      padding: 16px;
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .dash-card-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .dash-card-number {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .dash-card-label {
+      font-size: 12px;
+      color: var(--text-light);
+      margin-top: 2px;
+    }
+
+    .dash-card:nth-child(1) .dash-card-icon { background: #DBEAFE; }
+    .dash-card:nth-child(2) .dash-card-icon { background: #D1FAE5; }
+    .dash-card:nth-child(3) .dash-card-icon { background: #FEF3C7; }
+    .dash-card:nth-child(4) .dash-card-icon { background: #FCE7F3; }
+
+    .hero-float-card {
+      position: absolute;
+      background: white;
+      border-radius: var(--radius);
+      padding: 14px 18px;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .hero-float-card.card-1 {
+      top: -10px;
+      right: -20px;
+      animation-delay: 0s;
+    }
+
+    .hero-float-card.card-2 {
+      bottom: 20px;
+      left: -30px;
+      animation-delay: 1.5s;
+    }
+
+    .float-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .float-text-main {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .float-text-sub {
+      font-size: 11px;
+      color: var(--text-light);
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* ===== STATS BAR ===== */
+    .stats-bar {
+      background: white;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      padding: 40px 24px;
+    }
+
+    .stats-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 36px;
+      font-weight: 900;
+      color: var(--primary);
+      line-height: 1;
+    }
+
+    .stat-number span { color: var(--accent); }
+
+    .stat-label {
+      font-size: 14px;
+      color: var(--text-light);
+      margin-top: 4px;
+      font-weight: 500;
+    }
+
+    /* ===== SECTIONS COMMON ===== */
+    .section {
+      padding: 100px 24px;
+    }
+
+    .section-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .section-tag {
+      display: inline-block;
+      background: var(--bg-alt);
+      color: var(--primary);
+      padding: 6px 16px;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .section-title {
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+    }
+
+    .section-subtitle {
+      font-size: 18px;
+      color: var(--text-light);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* ===== MODULES ===== */
+    .modules-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 24px;
+    }
+
+    .module-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      border: 1px solid rgba(0,0,0,0.06);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .module-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .module-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .module-card:hover::before { opacity: 1; }
+
+    .module-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    .module-card:nth-child(1) .module-icon { background: #DBEAFE; }
+    .module-card:nth-child(2) .module-icon { background: #D1FAE5; }
+    .module-card:nth-child(3) .module-icon { background: #FEF3C7; }
+    .module-card:nth-child(4) .module-icon { background: #FCE7F3; }
+    .module-card:nth-child(5) .module-icon { background: #E0E7FF; }
+
+    .module-name {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 10px;
+    }
+
+    .module-desc {
+      font-size: 15px;
+      color: var(--text-light);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .module-features {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .module-features li {
+      background: var(--bg);
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      color: var(--text-light);
+      font-weight: 500;
+    }
+
+    /* ===== FEATURES SECTION ===== */
+    .features-section {
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      color: white;
+    }
+
+    .features-section .section-tag {
+      background: rgba(255,255,255,0.1);
+      color: var(--accent-light);
+    }
+
+    .features-section .section-title {
+      color: white;
+    }
+
+    .features-section .section-subtitle {
+      color: rgba(255,255,255,0.7);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+
+    .feature-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      transition: all 0.3s;
+      backdrop-filter: blur(10px);
+    }
+
+    .feature-card:hover {
+      background: rgba(255,255,255,0.1);
+      transform: translateY(-4px);
+    }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(16,185,129,0.2);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: 16px;
+    }
+
+    .feature-name {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .feature-desc {
+      font-size: 14px;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.6;
+    }
+
+    /* ===== HOW IT WORKS ===== */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 40px;
+      position: relative;
+    }
+
+    .step {
+      text-align: center;
+      position: relative;
+    }
+
+    .step-number {
+      width: 64px;
+      height: 64px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      font-weight: 800;
+      margin: 0 auto 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .step-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 8px;
+    }
+
+    .step-desc {
+      font-size: 14px;
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+
+    /* ===== TESTIMONIALS ===== */
+    .testimonials-section {
+      background: var(--bg-alt);
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    .testimonial-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+
+    .testimonial-card::before {
+      content: '\201C';
+      position: absolute;
+      top: 16px;
+      left: 24px;
+      font-size: 60px;
+      color: var(--accent);
+      opacity: 0.2;
+      line-height: 1;
+      font-family: Georgia, serif;
+    }
+
+    .testimonial-text {
+      font-size: 15px;
+      color: var(--text);
+      line-height: 1.7;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .testimonial-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    .testimonial-name {
+      font-weight: 600;
+      color: var(--primary-dark);
+      font-size: 15px;
+    }
+
+    .testimonial-role {
+      font-size: 13px;
+      color: var(--text-light);
+    }
+
+    /* ===== FAQ ===== */
+    .faq-list {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      background: white;
+      border-radius: var(--radius);
+      margin-bottom: 12px;
+      border: 1px solid rgba(0,0,0,0.06);
+      overflow: hidden;
+    }
+
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 20px 24px;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--primary-dark);
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: inherit;
+      transition: background 0.2s;
+    }
+
+    .faq-question:hover { background: var(--bg); }
+
+    .faq-question::after {
+      content: '+';
+      font-size: 24px;
+      font-weight: 300;
+      color: var(--accent);
+      transition: transform 0.3s;
+    }
+
+    .faq-item.open .faq-question::after {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+
+    .faq-answer-inner {
+      padding: 0 24px 20px;
+      font-size: 15px;
+      color: var(--text-light);
+      line-height: 1.7;
+    }
+
+    .faq-item.open .faq-answer {
+      max-height: 300px;
+    }
+
+    /* ===== CTA FINAL ===== */
+    .cta-section {
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      text-align: center;
+      padding: 80px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(16,185,129,0.15), transparent 70%);
+      border-radius: 50%;
+    }
+
+    .cta-title {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 800;
+      color: white;
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-subtitle {
+      font-size: 18px;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 40px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: var(--primary-dark);
+      color: rgba(255,255,255,0.7);
+      padding: 60px 24px 24px;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-brand-desc {
+      font-size: 14px;
+      line-height: 1.7;
+      margin-top: 16px;
+    }
+
+    .footer-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: white;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li { margin-bottom: 10px; }
+
+    .footer-links a {
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--accent-light); }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 16px;
+    }
+
+    .footer-social a {
+      width: 36px;
+      height: 36px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-decoration: none;
+      transition: background 0.2s;
+      font-size: 14px;
+    }
+
+    .footer-social a:hover { background: var(--accent); }
+
+    /* ===== MOBILE ===== */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-mobile-btn { display: block; }
+
+      .nav-links.active {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        right: 0;
+        background: white;
+        padding: 24px;
+        box-shadow: var(--shadow-lg);
+        gap: 16px;
+      }
+
+      .hero-container {
+        grid-template-columns: 1fr;
+        padding-top: 100px;
+      }
+
+      .hero-visual { display: none; }
+
+      .stats-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+      }
+
+      .modules-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+      }
+
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ===== ANIMATIONS ===== */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#" class="nav-logo">
+        <div class="nav-logo-icon">N</div>
+        <div class="nav-logo-text">Net<span>Escol</span></div>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#modulos">Modulos</a></li>
+        <li><a href="#recursos">Recursos</a></li>
+        <li><a href="#como-funciona">Como Funciona</a></li>
+        <li><a href="#depoimentos">Depoimentos</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contato" class="nav-cta">Fale Conosco</a></li>
+        <li><a href="https://transporteescolar-production.up.railway.app" target="_blank" class="nav-sistema">Acessar Sistema</a></li>
+      </ul>
+      <button class="nav-mobile-btn" id="navMobileBtn" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-container">
+      <div class="hero-content">
+        <div class="hero-badge">Versao 3.3 - Novo!</div>
+        <h1>Gestao Escolar <span class="highlight">completa</span> para sua prefeitura</h1>
+        <p class="hero-desc">
+          Alunos, transporte, merenda, notas, frequencia, financeiro e muito mais.
+          Tudo integrado em uma plataforma moderna, segura e facil de usar.
+        </p>
+        <div class="hero-buttons">
+          <a href="#contato" class="btn btn-primary">Solicitar Demonstracao</a>
+          <a href="https://transporteescolar-production.up.railway.app" target="_blank" class="btn btn-outline">Acessar Sistema &#8594;</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-dashboard">
+          <div class="dashboard-header">
+            <div class="dashboard-dots">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="dashboard-title">NetEscol - Painel de Controle</div>
+          </div>
+          <div class="dashboard-body">
+            <div class="dash-card">
+              <div class="dash-card-icon">&#127891;</div>
+              <div class="dash-card-number">2.847</div>
+              <div class="dash-card-label">Alunos Matriculados</div>
+            </div>
+            <div class="dash-card">
+              <div class="dash-card-icon">&#128652;</div>
+              <div class="dash-card-number">34</div>
+              <div class="dash-card-label">Veiculos Ativos</div>
+            </div>
+            <div class="dash-card">
+              <div class="dash-card-icon">&#127979;</div>
+              <div class="dash-card-number">18</div>
+              <div class="dash-card-label">Escolas</div>
+            </div>
+            <div class="dash-card">
+              <div class="dash-card-icon">&#128100;</div>
+              <div class="dash-card-number">142</div>
+              <div class="dash-card-label">Professores</div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-float-card card-1">
+          <div class="float-icon" style="background:#D1FAE5">&#9989;</div>
+          <div>
+            <div class="float-text-main">GPS Tempo Real</div>
+            <div class="float-text-sub">34 veiculos rastreados</div>
+          </div>
+        </div>
+        <div class="hero-float-card card-2">
+          <div class="float-icon" style="background:#DBEAFE">&#128202;</div>
+          <div>
+            <div class="float-text-main">98.2% Frequencia</div>
+            <div class="float-text-sub">Hoje, 13 abril</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS BAR -->
+  <div class="stats-bar">
+    <div class="stats-container">
+      <div class="stat-item fade-up">
+        <div class="stat-number">90<span>+</span></div>
+        <div class="stat-label">Paginas do Sistema</div>
+      </div>
+      <div class="stat-item fade-up">
+        <div class="stat-number">65<span>+</span></div>
+        <div class="stat-label">Tabelas de Dados</div>
+      </div>
+      <div class="stat-item fade-up">
+        <div class="stat-number">270<span>+</span></div>
+        <div class="stat-label">Funcionalidades</div>
+      </div>
+      <div class="stat-item fade-up">
+        <div class="stat-number">5</div>
+        <div class="stat-label">Modulos Integrados</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULES -->
+  <section class="section" id="modulos">
+    <div class="section-container">
+      <div class="section-header">
+        <div class="section-tag">Modulos</div>
+        <h2 class="section-title">Tudo que sua secretaria precisa</h2>
+        <p class="section-subtitle">5 modulos completos cobrindo todas as areas da gestao escolar municipal</p>
+      </div>
+      <div class="modules-grid">
+        <div class="module-card fade-up">
+          <div class="module-icon">&#127891;</div>
+          <h3 class="module-name">Gestao Escolar</h3>
+          <p class="module-desc">Cadastro completo de alunos, escolas, turmas, series, matriculas e professores com todos os dados necessarios.</p>
+          <ul class="module-features">
+            <li>Alunos</li>
+            <li>Escolas</li>
+            <li>Turmas</li>
+            <li>Matriculas</li>
+            <li>Series</li>
+            <li>Professores</li>
+          </ul>
+        </div>
+        <div class="module-card fade-up">
+          <div class="module-icon">&#128218;</div>
+          <h3 class="module-name">Ensino e Aprendizagem</h3>
+          <p class="module-desc">Diario de classe digital, lancamento de notas, boletim, parecer descritivo, calendario escolar e EDUCACENSO.</p>
+          <ul class="module-features">
+            <li>Diario Digital</li>
+            <li>Notas</li>
+            <li>Boletim</li>
+            <li>Parecer</li>
+            <li>Calendario</li>
+            <li>EDUCACENSO</li>
+          </ul>
+        </div>
+        <div class="module-card fade-up">
+          <div class="module-icon">&#128652;</div>
+          <h3 class="module-name">Frota e Rotas</h3>
+          <p class="module-desc">Gestao completa de transporte escolar com GPS em tempo real, portal do responsavel e controle de embarque.</p>
+          <ul class="module-features">
+            <li>Rotas</li>
+            <li>Veiculos</li>
+            <li>GPS Tempo Real</li>
+            <li>Motoristas</li>
+            <li>Portal Pais</li>
+            <li>QR Code</li>
+          </ul>
+        </div>
+        <div class="module-card fade-up">
+          <div class="module-icon">&#128176;</div>
+          <h3 class="module-name">Gestao e Recursos</h3>
+          <p class="module-desc">RH, financeiro, contratos, merenda escolar (PNAE), biblioteca e patrimonio em uma unica plataforma.</p>
+          <ul class="module-features">
+            <li>RH</li>
+            <li>Financeiro</li>
+            <li>Contratos</li>
+            <li>Merenda PNAE</li>
+            <li>Biblioteca</li>
+            <li>Patrimonio</li>
+          </ul>
+        </div>
+        <div class="module-card fade-up">
+          <div class="module-icon">&#9881;</div>
+          <h3 class="module-name">Central de Controle</h3>
+          <p class="module-desc">Configuracoes gerais, portal de transparencia, backup automatico e central de comunicacao integrada.</p>
+          <ul class="module-features">
+            <li>Configuracoes</li>
+            <li>Transparencia</li>
+            <li>Backup</li>
+            <li>Comunicacao</li>
+            <li>Relatorios</li>
+            <li>Auditoria</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="section features-section" id="recursos">
+    <div class="section-container">
+      <div class="section-header">
+        <div class="section-tag">Recursos</div>
+        <h2 class="section-title">Tecnologia de ponta para educacao</h2>
+        <p class="section-subtitle">Recursos modernos que fazem a diferenca no dia a dia da sua secretaria</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card fade-up">
+          <div class="feature-icon">&#128225;</div>
+          <h3 class="feature-name">GPS em Tempo Real</h3>
+          <p class="feature-desc">Rastreie todos os veiculos da frota em tempo real. Pais acompanham pelo celular.</p>
+        </div>
+        <div class="feature-card fade-up">
+          <div class="feature-icon">&#128241;</div>
+          <h3 class="feature-name">App Progressive (PWA)</h3>
+          <p class="feature-desc">Funciona como aplicativo no celular sem precisar baixar da loja. Acesso offline.</p>
+        </div>
+        <div class="feature-card fade-up">
+          <div class="feature-icon">&#128196;</div>
+          <h3 class="feature-name">PDF com QR Code</h3>
+          <p class="feature-desc">Documentos oficiais com QR Code de verificacao e assinatura digital.</p>
+        </div>
+        <div class="feature-card fade-up">
+          <div class="feature-icon">&#128274;</div>
+          <h3 class="feature-name">Seguranca Avancada</h3>
+          <p class="feature-desc">Criptografia, autenticacao JWT, protecao contra ataques e conformidade LGPD.</p>
+        </div>
+        <div class="feature-card fade-up">
+          <div class="feature-icon">&#128202;</div>
+          <h3 class="feature-name">Dashboard 360</h3>
+          <p class="feature-desc">Visao completa da rede escolar com graficos interativos e indicadores em tempo real.</p>
+        </div>
+        <div class="feature-card fade-up">
+          <div class="feature-icon">&#128229;</div>
+          <h3 class="feature-name">Exportacao Multi-formato</h3>
+          <p class="feature-desc">Exporte para PDF, Word, Excel, CSV e HTML. Impressao otimizada com cabecalho institucional.</p>
+        </div>
+        <div class="feature-card fade-up">
+          <div class="feature-icon">&#127760;</div>
+          <h3 class="feature-name">Multi-Prefeitura (SaaS)</h3>
+          <p class="feature-desc">Plataforma multi-tenant. Cada prefeitura tem seus dados isolados e seguros.</p>
+        </div>
+        <div class="feature-card fade-up">
+          <div class="feature-icon">&#128231;</div>
+          <h3 class="feature-name">Notificacoes Inteligentes</h3>
+          <p class="feature-desc">Alertas por e-mail e push para pais, professores e gestores sobre eventos importantes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section" id="como-funciona">
+    <div class="section-container">
+      <div class="section-header">
+        <div class="section-tag">Como Funciona</div>
+        <h2 class="section-title">Comece em minutos</h2>
+        <p class="section-subtitle">Implantacao rapida e suporte dedicado para sua prefeitura</p>
+      </div>
+      <div class="steps-grid">
+        <div class="step fade-up">
+          <div class="step-number">1</div>
+          <h3 class="step-title">Contato Inicial</h3>
+          <p class="step-desc">Entre em contato e agendamos uma demonstracao completa do sistema para sua equipe.</p>
+        </div>
+        <div class="step fade-up">
+          <div class="step-number">2</div>
+          <h3 class="step-title">Configuracao</h3>
+          <p class="step-desc">Configuramos o sistema com os dados da sua prefeitura, escolas, turmas e alunos.</p>
+        </div>
+        <div class="step fade-up">
+          <div class="step-number">3</div>
+          <h3 class="step-title">Treinamento</h3>
+          <p class="step-desc">Treinamos toda a equipe da secretaria para usar o sistema com confianca.</p>
+        </div>
+        <div class="step fade-up">
+          <div class="step-number">4</div>
+          <h3 class="step-title">Operacao</h3>
+          <p class="step-desc">Sistema ativo com suporte tecnico dedicado e atualizacoes constantes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="section testimonials-section" id="depoimentos">
+    <div class="section-container">
+      <div class="section-header">
+        <div class="section-tag">Depoimentos</div>
+        <h2 class="section-title">O que dizem nossos clientes</h2>
+        <p class="section-subtitle">Prefeituras que ja transformaram sua gestao escolar</p>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card fade-up">
+          <p class="testimonial-text">O NetEscol revolucionou nossa secretaria de educacao. Antes gastravamos horas com planilhas, agora temos tudo integrado e os pais adoram acompanhar o transporte pelo celular.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">MR</div>
+            <div>
+              <div class="testimonial-name">Maria Rodrigues</div>
+              <div class="testimonial-role">Secretaria de Educacao</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card fade-up">
+          <p class="testimonial-text">A gestao do transporte escolar era nosso maior desafio. Com o GPS em tempo real e o controle de embarque por QR Code, a seguranca dos alunos aumentou muito.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">JS</div>
+            <div>
+              <div class="testimonial-name">Joao Santos</div>
+              <div class="testimonial-role">Coordenador de Transporte</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card fade-up">
+          <p class="testimonial-text">O diario digital e o lancamento de notas online facilitaram demais a vida dos professores. O boletim sai automaticamente e os pais recebem no portal.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">AL</div>
+            <div>
+              <div class="testimonial-name">Ana Lima</div>
+              <div class="testimonial-role">Diretora Escolar</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq" style="background: var(--bg-alt);">
+    <div class="section-container">
+      <div class="section-header">
+        <div class="section-tag">FAQ</div>
+        <h2 class="section-title">Perguntas Frequentes</h2>
+        <p class="section-subtitle">Tire suas duvidas sobre o NetEscol</p>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question">O sistema funciona no celular?</button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Sim! O NetEscol e um Progressive Web App (PWA), ou seja, funciona como um aplicativo nativo no celular, tablet e computador. Basta acessar pelo navegador e adicionar a tela inicial. Funciona ate mesmo offline.</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Preciso instalar algo no computador?</button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Nao! O NetEscol e 100% na nuvem. Voce acessa pelo navegador de qualquer computador ou celular. Nao precisa instalar nenhum programa, e as atualizacoes sao automaticas.</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Os dados ficam seguros?</button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Absolutamente. Usamos criptografia de ponta a ponta, autenticacao JWT segura, protecao contra SQL injection, XSS e outros ataques. O sistema e compativel com a LGPD e cada prefeitura tem seus dados completamente isolados (multi-tenant).</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Como funciona o GPS do transporte?</button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">O motorista ativa o GPS no celular e o sistema rastreia a posicao em tempo real via Socket.IO. Os pais podem acompanhar pelo Portal do Responsavel e recebem notificacoes quando o onibus esta proximo. O embarque e registrado por QR Code.</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Quanto tempo leva para implantar?</button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">A implantacao completa leva em media 2 a 4 semanas, dependendo do tamanho da rede escolar. Inclui configuracao do sistema, importacao de dados, treinamento da equipe e acompanhamento inicial.</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Posso importar dados de outro sistema?</button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Sim! Oferecemos importacao de dados via planilhas Excel/CSV. Nossa equipe auxilia na migracao completa para garantir que nenhum dado seja perdido na transicao.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="cta-section" id="contato">
+    <h2 class="cta-title">Pronto para transformar sua gestao escolar?</h2>
+    <p class="cta-subtitle">Agende uma demonstracao gratuita e veja como o NetEscol pode ajudar sua prefeitura.</p>
+    <div class="cta-buttons">
+      <a href="https://wa.me/5500000000000?text=Olá! Gostaria de conhecer o NetEscol." class="btn btn-primary" target="_blank">WhatsApp</a>
+      <a href="mailto:contato@netescol.com.br" class="btn btn-outline">Enviar E-mail</a>
+      <a href="https://transporteescolar-production.up.railway.app" target="_blank" class="btn btn-outline">Acessar Sistema &#8594;</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-grid">
+        <div>
+          <a href="#" class="nav-logo" style="margin-bottom: 12px; display: inline-flex;">
+            <div class="nav-logo-icon">N</div>
+            <div class="nav-logo-text">Net<span>Escol</span></div>
+          </a>
+          <p class="footer-brand-desc">Plataforma completa de gestao escolar municipal. Desenvolvido com tecnologia moderna para transformar a educacao publica.</p>
+        </div>
+        <div>
+          <h4 class="footer-title">Produto</h4>
+          <ul class="footer-links">
+            <li><a href="#modulos">Modulos</a></li>
+            <li><a href="#recursos">Recursos</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-title">Empresa</h4>
+          <ul class="footer-links">
+            <li><a href="#">Sobre Nos</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Carreiras</a></li>
+            <li><a href="#contato">Contato</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-title">Legal</h4>
+          <ul class="footer-links">
+            <li><a href="#">Termos de Uso</a></li>
+            <li><a href="#">Privacidade</a></li>
+            <li><a href="#">LGPD</a></li>
+            <li><a href="#">Cookies</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 NetEscol. Todos os direitos reservados.</span>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram">IG</a>
+          <a href="#" aria-label="LinkedIn">IN</a>
+          <a href="#" aria-label="YouTube">YT</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 20);
+    });
+
+    // Mobile menu
+    const mobileBtn = document.getElementById('navMobileBtn');
+    const navLinks = document.getElementById('navLinks');
+    mobileBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    // Close mobile menu on link click
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => navLinks.classList.remove('active'));
+    });
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.parentElement;
+        const wasOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if (!wasOpen) item.classList.add('open');
+      });
+    });
+
+    // Scroll animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
