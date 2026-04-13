@@ -7,6 +7,13 @@
   <meta name="description" content="NetEscol - Plataforma completa de gestão escolar municipal. Alunos, transporte, merenda, notas, frequência e muito mais em um só lugar.">
   <meta name="keywords" content="gestão escolar, transporte escolar, sistema educacional, prefeitura, escola municipal">
   <meta name="theme-color" content="#1B3A5C">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <meta property="og:title" content="NetEscol - Sistema de Gestão Escolar Municipal">
+  <meta property="og:description" content="Plataforma completa de gestão escolar municipal. Alunos, transporte, merenda, notas, frequência e muito mais.">
+  <meta property="og:image" content="banner.png">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -1382,6 +1389,149 @@
       }
     }
 
+    /* ===== SCROLL PROGRESS BAR ===== */
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-light));
+      z-index: 1001;
+      transition: width 0.1s linear;
+      width: 0%;
+    }
+
+    /* ===== BACK TO TOP ===== */
+    .back-to-top {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 15px rgba(27,58,92,0.3);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px);
+      transition: all 0.3s ease;
+      z-index: 999;
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .back-to-top:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(27,58,92,0.4);
+    }
+
+    /* ===== STARS ===== */
+    .testimonial-stars {
+      color: #F59E0B;
+      font-size: 16px;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+    }
+
+    /* ===== SCREENSHOTS SECTION ===== */
+    .screenshots-section {
+      background: white;
+      overflow: hidden;
+    }
+
+    .screenshots-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.8fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .screenshot-phone {
+      width: 280px;
+      margin: 0 auto;
+      border-radius: 32px;
+      overflow: hidden;
+      box-shadow: var(--shadow-xl);
+      border: 6px solid #1a1a2e;
+    }
+
+    .screenshot-phone img {
+      width: 100%;
+      display: block;
+    }
+
+    .screenshot-desktop {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-xl);
+      border: 4px solid rgba(0,0,0,0.1);
+    }
+
+    .screenshot-desktop img {
+      width: 100%;
+      display: block;
+    }
+
+    .screenshots-content h3 {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin-bottom: 16px;
+    }
+
+    .screenshots-content p {
+      font-size: 16px;
+      color: var(--text-light);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+
+    .screenshot-badges {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .screenshot-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg-alt);
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    @media (max-width: 768px) {
+      .screenshots-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .screenshot-phone {
+        width: 220px;
+      }
+
+      .back-to-top {
+        bottom: 20px;
+        right: 20px;
+        width: 42px;
+        height: 42px;
+      }
+    }
+
     /* ===== ANIMATIONS ===== */
     .fade-up {
       opacity: 0;
@@ -1396,6 +1546,12 @@
   </style>
 </head>
 <body>
+
+  <!-- SCROLL PROGRESS -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- BACK TO TOP -->
+  <button class="back-to-top" id="backToTop" aria-label="Voltar ao topo">&#8593;</button>
 
   <!-- NAVBAR -->
   <nav class="navbar" id="navbar">
@@ -1738,6 +1894,45 @@
     </div>
   </section>
 
+  <!-- SCREENSHOTS -->
+  <section class="section screenshots-section" id="screenshots">
+    <div class="section-container">
+      <div class="section-header">
+        <div class="section-tag">Veja na Prática</div>
+        <h2 class="section-title">Conheça o sistema por dentro</h2>
+        <p class="section-subtitle">Interface moderna e intuitiva, pensada para facilitar o dia a dia</p>
+      </div>
+      <div class="screenshots-grid">
+        <div class="fade-up" style="text-align:center;">
+          <div class="screenshot-phone">
+            <img src="app-screenshot.png" alt="NetEscol - Portal do Responsável no celular">
+          </div>
+        </div>
+        <div class="fade-up">
+          <div class="screenshots-content">
+            <h3>Acesso em qualquer dispositivo</h3>
+            <p>
+              O NetEscol se adapta perfeitamente a qualquer tela. No celular, os pais acompanham
+              o transporte em tempo real e recebem atualizações sobre seus filhos. No computador,
+              gestores e professores têm uma visão completa de toda a rede escolar.
+            </p>
+            <p>
+              A interface foi projetada para ser simples e objetiva, permitindo que qualquer pessoa
+              utilize o sistema sem treinamento extensivo.
+            </p>
+            <div class="screenshot-badges">
+              <span class="screenshot-badge">&#128241; Responsivo</span>
+              <span class="screenshot-badge">&#128274; Seguro</span>
+              <span class="screenshot-badge">&#9889; Rápido</span>
+              <span class="screenshot-badge">&#127760; 100% Online</span>
+              <span class="screenshot-badge">&#128247; PWA + APK</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- TESTIMONIALS -->
   <section class="section testimonials-section" id="depoimentos">
     <div class="section-container">
@@ -1748,6 +1943,7 @@
       </div>
       <div class="testimonials-grid">
         <div class="testimonial-card fade-up">
+          <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
           <p class="testimonial-text">O NetEscol revolucionou nossa secretaria de educação. Antes gastávamos horas com planilhas, agora temos tudo integrado e os pais adoram acompanhar o transporte pelo celular.</p>
           <div class="testimonial-author">
             <div class="testimonial-avatar">MR</div>
@@ -1758,6 +1954,7 @@
           </div>
         </div>
         <div class="testimonial-card fade-up">
+          <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
           <p class="testimonial-text">A gestão do transporte escolar era nosso maior desafio. Com o GPS em tempo real e o controle de embarque por QR Code, a segurança dos alunos aumentou muito.</p>
           <div class="testimonial-author">
             <div class="testimonial-avatar">JS</div>
@@ -1768,6 +1965,7 @@
           </div>
         </div>
         <div class="testimonial-card fade-up">
+          <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
           <p class="testimonial-text">O diário digital e o lançamento de notas on-line facilitaram demais a vida dos professores. O boletim sai automaticamente e os pais recebem no portal.</p>
           <div class="testimonial-author">
             <div class="testimonial-avatar">AL</div>
@@ -1973,10 +2171,29 @@
   </footer>
 
   <script>
-    // Navbar scroll effect
+    // Navbar scroll effect + Progress bar + Back to top
     const navbar = document.getElementById('navbar');
+    const scrollProgress = document.getElementById('scrollProgress');
+    const backToTop = document.getElementById('backToTop');
+
     window.addEventListener('scroll', () => {
-      navbar.classList.toggle('scrolled', window.scrollY > 20);
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = (scrollTop / docHeight) * 100;
+
+      // Navbar shadow
+      navbar.classList.toggle('scrolled', scrollTop > 20);
+
+      // Progress bar
+      scrollProgress.style.width = scrollPercent + '%';
+
+      // Back to top button
+      backToTop.classList.toggle('visible', scrollTop > 500);
+    });
+
+    // Back to top click
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
     // Mobile menu
@@ -2001,16 +2218,45 @@
       });
     });
 
-    // Scroll animations
+    // Animated counter
+    function animateCounter(el, target, suffix) {
+      const duration = 2000;
+      const start = 0;
+      const startTime = performance.now();
+
+      function update(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const current = Math.floor(eased * target);
+        el.textContent = current.toLocaleString('pt-BR') + suffix;
+        if (progress < 1) requestAnimationFrame(update);
+      }
+      requestAnimationFrame(update);
+    }
+
+    // Scroll animations + counter trigger
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
+
+          // Trigger counter animation for stat numbers
+          if (entry.target.classList.contains('stat-item')) {
+            const numEl = entry.target.querySelector('.stat-number');
+            if (numEl && !numEl.dataset.animated) {
+              numEl.dataset.animated = 'true';
+              const text = numEl.textContent.trim();
+              const num = parseInt(text.replace(/[^\d]/g, ''));
+              const suffix = text.includes('+') ? '+' : '';
+              animateCounter(numEl, num, suffix);
+            }
+          }
         }
       });
     }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+    document.querySelectorAll('.fade-up, .stat-item').forEach(el => observer.observe(el));
 
     // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -2019,6 +2265,27 @@
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
           target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // Active nav link highlight on scroll
+    const sections = document.querySelectorAll('section[id]');
+    window.addEventListener('scroll', () => {
+      const scrollPos = window.scrollY + 100;
+      sections.forEach(section => {
+        const top = section.offsetTop;
+        const height = section.offsetHeight;
+        const id = section.getAttribute('id');
+        const link = document.querySelector('.nav-links a[href="#' + id + '"]');
+        if (link) {
+          if (scrollPos >= top && scrollPos < top + height) {
+            link.style.color = 'var(--primary)';
+            link.style.fontWeight = '700';
+          } else {
+            link.style.color = '';
+            link.style.fontWeight = '';
+          }
         }
       });
     });
