@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 160" fill="none">
+  <!-- NetEscol Text -->
+  <text x="0" y="82" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="72" font-weight="800" letter-spacing="-1">
+    <tspan fill="#ffffff">Net</tspan><tspan fill="#ffffff">Esc</tspan><tspan fill="#4ade80">o</tspan><tspan fill="#ffffff">l</tspan>
+  </text>
+
+  <!-- Chart icon integrated into the "o" -->
+  <g transform="translate(295, 28)">
+    <!-- Chart bars -->
+    <rect x="0" y="32" width="8" height="18" rx="2" fill="#22c55e" opacity="0.6"/>
+    <rect x="12" y="24" width="8" height="26" rx="2" fill="#22c55e" opacity="0.8"/>
+    <rect x="24" y="14" width="8" height="36" rx="2" fill="#4ade80"/>
+    <!-- Arrow up -->
+    <path d="M4 30 L28 8" stroke="#4ade80" stroke-width="3" stroke-linecap="round"/>
+    <path d="M20 6 L30 8 L26 16" fill="#4ade80"/>
+    <!-- Graduation cap -->
+    <path d="M10 -4 L28 4 L10 12 L-8 4 Z" fill="#22d3ee" opacity="0.9"/>
+    <rect x="8" y="4" width="4" height="10" rx="1" fill="#22d3ee" opacity="0.7"/>
+  </g>
+
+  <!-- Subtitle -->
+  <text x="2" y="118" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="22" font-weight="300" fill="#94a3b8" letter-spacing="2">
+    Gestao Escolar Inteligente
+  </text>
+</svg>

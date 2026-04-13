@@ -1,12 +1,12 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --primary: #1B3A5C;
-  --primary-light: #2A5A8C;
-  --primary-dark: #0F2440;
-  --accent: #10B981;
-  --accent-light: #34D399;
-  --accent-dark: #059669;
+  --primary: #1e3a5f;
+  --primary-light: #2a5a8c;
+  --primary-dark: #0f172a;
+  --accent: #22c55e;
+  --accent-light: #4ade80;
+  --accent-dark: #16a34a;
   --bg: #F8FAFC;
   --bg-alt: #EBF4FF;
   --text: #1E293B;
@@ -118,6 +118,23 @@ body {
 .nav-logo-text span {
   color: var(--accent);
 }
+.logo-bars {
+  display: inline-flex;
+  gap: 2px;
+  margin-left: 1px;
+  vertical-align: baseline;
+  align-items: flex-end;
+  height: 20px;
+}
+.logo-bars i {
+  display: inline-block;
+  width: 4px;
+  border-radius: 1px;
+  font-style: normal;
+}
+.logo-bars i:nth-child(1) { height: 10px; background: #3b82f6; }
+.logo-bars i:nth-child(2) { height: 15px; background: #22c55e; }
+.logo-bars i:nth-child(3) { height: 20px; background: #1e3a5f; }
 
 .nav-links {
   display: flex;
