@@ -1615,10 +1615,32 @@ body {
   50% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.6); }
 }
 
-/* ===== LOGO IMG ===== */
-.nav-logo-img { height: 40px; width: auto; border-radius: 4px; }
-.hero-logo-img { height: 100px; width: auto; }
-.footer-logo-img { height: 50px; width: auto; margin-bottom: 12px; }
+/* ===== NETESCOL LOGO (HTML/CSS identica ao sistema) ===== */
+.netescol-logo {
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+.netescol-logo svg { margin-bottom: -2px; }
+.netescol-logo p {
+  width: 100%;
+  font-weight: 300;
+  color: #94a3b8;
+  letter-spacing: 2px;
+  margin-top: 4px;
+}
+.netescol-logo-sm span { font-size: 28px; }
+.netescol-logo-sm svg { width: 34px; height: 34px; }
+.netescol-logo-lg span { font-size: 64px; }
+.netescol-logo-lg svg { width: 72px; height: 72px; }
+.netescol-logo-lg p { font-size: 18px; margin-left: 2px; }
+.netescol-logo-md span { font-size: 32px; }
+.netescol-logo-md svg { width: 38px; height: 38px; }
 
 /* ===== BOTAO SISTEMA NAVBAR ===== */
 .nav-sistema {
