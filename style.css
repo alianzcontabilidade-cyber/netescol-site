@@ -36,10 +36,10 @@ body {
   left: 0;
   right: 0;
   z-index: 1000;
-  background: rgba(255,255,255,0.9);
+  background: rgba(15,23,42,0.95);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(27,58,92,0.08);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
   transition: all 0.3s ease;
 }
 
@@ -145,13 +145,13 @@ body {
 
 .nav-links a {
   text-decoration: none;
-  color: var(--text-light);
+  color: rgba(255,255,255,0.8);
   font-weight: 500;
   font-size: 15px;
   transition: color 0.2s;
 }
 
-.nav-links a:hover { color: var(--primary); }
+.nav-links a:hover { color: #ffffff; }
 
 .nav-cta {
   background: linear-gradient(135deg, var(--accent), var(--accent-dark));
@@ -1615,10 +1615,10 @@ body {
   50% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.6); }
 }
 
-/* ===== LOGO SVG ===== */
-.nav-logo-svg { height: 36px; width: auto; }
-.hero-logo-svg { height: 80px; width: auto; }
-.footer-logo-svg { height: 40px; width: auto; margin-bottom: 12px; }
+/* ===== LOGO IMG ===== */
+.nav-logo-img { height: 40px; width: auto; border-radius: 4px; }
+.hero-logo-img { height: 100px; width: auto; }
+.footer-logo-img { height: 50px; width: auto; margin-bottom: 12px; }
 
 /* ===== BOTAO SISTEMA NAVBAR ===== */
 .nav-sistema {
