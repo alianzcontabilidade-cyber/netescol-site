@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://www.netescol.com.br/sitemap.xml

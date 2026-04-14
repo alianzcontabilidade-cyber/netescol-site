@@ -87,6 +87,44 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
+// Contact form submission
+const contactForm = document.getElementById('contactForm');
+const formSuccess = document.getElementById('formSuccess');
+if (contactForm) {
+  contactForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = contactForm.querySelector('.btn-submit');
+    btn.disabled = true;
+    btn.textContent = 'Enviando...';
+    try {
+      const res = await fetch(contactForm.action, {
+        method: 'POST',
+        body: new FormData(contactForm),
+        headers: { 'Accept': 'application/json' },
+      });
+      if (res.ok) {
+        contactForm.style.display = 'none';
+        formSuccess.style.display = 'block';
+        if (typeof gtag === 'function') gtag('event', 'form_submit', { event_category: 'contato' });
+      } else {
+        btn.textContent = 'Erro. Tente novamente.';
+        btn.disabled = false;
+      }
+    } catch {
+      btn.textContent = 'Erro de conexao. Tente novamente.';
+      btn.disabled = false;
+    }
+  });
+}
+
+// Track CTA clicks (GA4)
+document.querySelectorAll('[data-event]').forEach(el => {
+  el.addEventListener('click', () => {
+    const event = el.getAttribute('data-event');
+    if (typeof gtag === 'function') gtag('event', event, { event_category: 'cta' });
+  });
+});
+
 // Active nav link highlight on scroll
 const sections = document.querySelectorAll('section[id]');
 window.addEventListener('scroll', () => {
