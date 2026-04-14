@@ -152,6 +152,7 @@ body {
 }
 
 .nav-links a:hover { color: #ffffff; }
+.nav-links a.nav-active { color: #ffffff; font-weight: 700; }
 
 .nav-cta {
   background: linear-gradient(135deg, var(--accent), var(--accent-dark));
@@ -1020,11 +1021,14 @@ body {
     top: 72px;
     left: 0;
     right: 0;
-    background: white;
+    background: rgba(15,23,42,0.98);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
     padding: 24px;
     box-shadow: var(--shadow-lg);
     gap: 16px;
   }
+  .nav-links.active a { color: rgba(255,255,255,0.9); }
+  .nav-mobile-btn span { background: #fff; }
 
   .hero-container {
     grid-template-columns: 1fr;
@@ -1564,7 +1568,7 @@ body {
   .nav-mobile-btn span { background: #fff; }
 
   /* Hero */
-  .hero { padding: 80px 0 40px; }
+  .hero { padding: 80px 0 40px; min-height: auto; }
   .hero h1 { font-size: 28px; line-height: 1.2; }
   .hero-desc { font-size: 14px; }
   .hero-buttons { flex-direction: column; gap: 12px; }

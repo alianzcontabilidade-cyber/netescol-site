@@ -98,11 +98,9 @@ window.addEventListener('scroll', () => {
     const link = document.querySelector('.nav-links a[href="#' + id + '"]');
     if (link) {
       if (scrollPos >= top && scrollPos < top + height) {
-        link.style.color = 'var(--primary)';
-        link.style.fontWeight = '700';
+        link.classList.add('nav-active');
       } else {
-        link.style.color = '';
-        link.style.fontWeight = '';
+        link.classList.remove('nav-active');
       }
     }
   });
