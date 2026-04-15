@@ -87,6 +87,18 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
+// Phone mask (XX) XXXXX-XXXX
+const telefoneInput = document.getElementById('telefone');
+if (telefoneInput) {
+  telefoneInput.addEventListener('input', (e) => {
+    let v = e.target.value.replace(/\D/g, '').substring(0, 11);
+    if (v.length > 6) v = '(' + v.substring(0,2) + ') ' + v.substring(2,7) + '-' + v.substring(7);
+    else if (v.length > 2) v = '(' + v.substring(0,2) + ') ' + v.substring(2);
+    else if (v.length > 0) v = '(' + v;
+    e.target.value = v;
+  });
+}
+
 // Contact form submission
 const contactForm = document.getElementById('contactForm');
 const formSuccess = document.getElementById('formSuccess');
