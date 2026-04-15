@@ -96,18 +96,20 @@ if (contactForm) {
     const btn = contactForm.querySelector('.btn-submit');
     btn.disabled = true;
     btn.textContent = 'Enviando...';
+    const data = Object.fromEntries(new FormData(contactForm));
     try {
       const res = await fetch(contactForm.action, {
         method: 'POST',
-        body: new FormData(contactForm),
-        headers: { 'Accept': 'application/json' },
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
       });
       if (res.ok) {
         contactForm.style.display = 'none';
         formSuccess.style.display = 'block';
         if (typeof gtag === 'function') gtag('event', 'form_submit', { event_category: 'contato' });
       } else {
-        btn.textContent = 'Erro. Tente novamente.';
+        const err = await res.json().catch(() => ({}));
+        btn.textContent = err.error || 'Erro. Tente novamente.';
         btn.disabled = false;
       }
     } catch {
