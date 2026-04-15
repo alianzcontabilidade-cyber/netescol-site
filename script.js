@@ -1,3 +1,74 @@
+// Typing animation
+(function() {
+  const words = ['completa', 'inteligente', 'integrada', 'moderna', 'segura'];
+  const el = document.getElementById('typingText');
+  if (!el) return;
+  let wordIdx = 0;
+  let charIdx = 0;
+  let deleting = false;
+  let pauseMs = 0;
+
+  function tick() {
+    const word = words[wordIdx];
+    if (deleting) {
+      el.textContent = word.substring(0, charIdx--);
+      if (charIdx < 0) {
+        deleting = false;
+        wordIdx = (wordIdx + 1) % words.length;
+        pauseMs = 400;
+      }
+    } else {
+      el.textContent = word.substring(0, ++charIdx);
+      if (charIdx === word.length) {
+        deleting = true;
+        pauseMs = 2000;
+      }
+    }
+    setTimeout(tick, pauseMs || (deleting ? 40 : 80));
+    pauseMs = 0;
+  }
+  setTimeout(tick, 600);
+})();
+
+// Keyboard accessibility
+document.addEventListener('keydown', (e) => {
+  // Escape closes mobile menu
+  if (e.key === 'Escape') {
+    const navLinks = document.getElementById('navLinks');
+    if (navLinks && navLinks.classList.contains('active')) {
+      navLinks.classList.remove('active');
+      document.getElementById('navMobileBtn')?.focus();
+    }
+    // Close open FAQ items
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+  }
+});
+
+// Make FAQ keyboard accessible (Enter/Space)
+document.querySelectorAll('.faq-question').forEach(btn => {
+  btn.setAttribute('tabindex', '0');
+  btn.setAttribute('role', 'button');
+  btn.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      btn.click();
+    }
+  });
+});
+
+// Skip navigation link (accessibility)
+const skipLink = document.createElement('a');
+skipLink.href = '#contato';
+skipLink.className = 'skip-nav';
+skipLink.textContent = 'Pular para o conteudo';
+document.body.insertBefore(skipLink, document.body.firstChild);
+
+// Focus visible styles for all interactive elements
+document.querySelectorAll('a, button, input, textarea, [tabindex]').forEach(el => {
+  el.addEventListener('focus', () => el.classList.add('focus-visible'));
+  el.addEventListener('blur', () => el.classList.remove('focus-visible'));
+});
+
 // Navbar scroll effect + Progress bar + Back to top
 const navbar = document.getElementById('navbar');
 const scrollProgress = document.getElementById('scrollProgress');
