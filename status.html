@@ -111,7 +111,7 @@
       </div>
 
       <div class="uptime-label">
-        <span>30 dias atras</span>
+        <span>30 dias atrás</span>
         <span>Hoje</span>
       </div>
       <div class="uptime-bar" id="uptimeBar"></div>
@@ -158,7 +158,7 @@
 
         if (data.status === 'ok') {
           banner.className = 'status-banner status-ok';
-          banner.innerHTML = '<div class="status-icon">&#9989;</div><div class="status-text">Todos os sistemas operacionais</div><div class="status-sub">Latencia: ' + latency + 'ms</div>';
+          banner.innerHTML = '<div class="status-icon">&#9989;</div><div class="status-text">Todos os sistemas operacionais</div><div class="status-sub">Latência: ' + latency + 'ms</div>';
 
           apiBadge.textContent = 'Operacional';
           apiBadge.className = 'check-badge badge-ok';
@@ -168,12 +168,12 @@
           dbBadge.textContent = dbOk ? 'Operacional' : 'Degradado';
           dbBadge.className = 'check-badge ' + (dbOk ? 'badge-ok' : 'badge-warn');
           dbDetail.textContent = dbOk
-            ? 'Conectado | Latencia: ' + (data.db?.latencyMs || '?') + 'ms'
-            : 'Problema de conexao';
+            ? 'Conectado | Latência: ' + (data.db?.latencyMs || '?') + 'ms'
+            : 'Problema de conexão';
 
         } else {
           banner.className = 'status-banner status-degraded';
-          banner.innerHTML = '<div class="status-icon">&#9888;</div><div class="status-text">Sistema degradado</div><div class="status-sub">Alguns servicos com problema</div>';
+          banner.innerHTML = '<div class="status-icon">&#9888;</div><div class="status-text">Sistema degradado</div><div class="status-sub">Alguns serviços com problema</div>';
 
           apiBadge.textContent = 'Degradado';
           apiBadge.className = 'check-badge badge-warn';
@@ -181,12 +181,12 @@
 
           dbBadge.textContent = 'Problema';
           dbBadge.className = 'check-badge badge-warn';
-          dbDetail.textContent = 'Verificar conexao';
+          dbDetail.textContent = 'Verificar conexão';
         }
       } catch (err) {
         banner.classList.remove('loading');
         banner.className = 'status-banner status-down';
-        banner.innerHTML = '<div class="status-icon">&#10060;</div><div class="status-text">Sistema indisponivel</div><div class="status-sub">Nao foi possivel conectar ao servidor</div>';
+        banner.innerHTML = '<div class="status-icon">&#10060;</div><div class="status-text">Sistema indisponível</div><div class="status-sub">Não foi possível conectar ao servidor</div>';
 
         apiBadge.textContent = 'Offline';
         apiBadge.className = 'check-badge badge-down';

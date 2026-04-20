@@ -196,7 +196,7 @@ if (contactForm) {
         btn.disabled = false;
       }
     } catch {
-      btn.textContent = 'Erro de conexao. Tente novamente.';
+      btn.textContent = 'Erro de conexão. Tente novamente.';
       btn.disabled = false;
     }
   });
