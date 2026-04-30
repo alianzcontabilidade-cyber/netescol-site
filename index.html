@@ -42,36 +42,59 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "NetEscol",
-    "applicationCategory": "BusinessApplication",
-    "operatingSystem": "Web, Android",
-    "description": "Sistema completo de gestão escolar municipal. Alunos, transporte, merenda, notas, frequência e muito mais.",
-    "url": "https://www.netescol.com.br",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "BRL",
-      "description": "Demonstração gratuita"
-    },
-    "provider": {
-      "@type": "Organization",
-      "name": "NetEscol",
-      "url": "https://www.netescol.com.br",
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "+55-63-99206-7951",
-        "contactType": "sales",
-        "availableLanguage": "Portuguese"
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://www.netescol.com.br/#organization",
+        "name": "NetEscol",
+        "url": "https://www.netescol.com.br",
+        "logo": "https://www.netescol.com.br/assets/images/logo-sistema.png",
+        "sameAs": [],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+55-63-99206-7951",
+          "contactType": "sales",
+          "email": "contato@netescol.com.br",
+          "availableLanguage": "Portuguese",
+          "areaServed": "BR"
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Palmas",
+          "addressRegion": "TO",
+          "addressCountry": "BR"
+        }
       },
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Palmas",
-        "addressRegion": "TO",
-        "addressCountry": "BR"
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://www.netescol.com.br/#software",
+        "name": "NetEscol",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web, Android",
+        "description": "Sistema completo de gestão escolar municipal. Alunos, transporte, merenda, notas, frequência e muito mais.",
+        "url": "https://www.netescol.com.br",
+        "image": "https://www.netescol.com.br/assets/images/og-image.png",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "BRL",
+          "description": "Demonstração gratuita"
+        },
+        "provider": { "@id": "https://www.netescol.com.br/#organization" },
+        "featureList": ["Gestão de Alunos", "Transporte Escolar com GPS", "Merenda PNAE", "Diário Digital", "Boletim", "Dashboard 360"]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "O sistema funciona no celular?", "acceptedAnswer": { "@type": "Answer", "text": "Sim. O NetEscol é um Progressive Web App (PWA), funciona como aplicativo nativo no celular, tablet e computador. Basta acessar pelo navegador e adicionar à tela inicial. Funciona até off-line." } },
+          { "@type": "Question", "name": "Preciso instalar algo no computador?", "acceptedAnswer": { "@type": "Answer", "text": "Não. O NetEscol é 100% na nuvem. Você acessa pelo navegador de qualquer computador ou celular. Não precisa instalar programa, e as atualizações são automáticas." } },
+          { "@type": "Question", "name": "Os dados ficam seguros?", "acceptedAnswer": { "@type": "Answer", "text": "Sim. Usamos criptografia de ponta a ponta, autenticação JWT segura, proteção contra SQL Injection, XSS e outros ataques. Compatível com a LGPD e cada prefeitura tem seus dados completamente isolados (multitenant)." } },
+          { "@type": "Question", "name": "Como funciona o GPS do transporte?", "acceptedAnswer": { "@type": "Answer", "text": "O motorista ativa o GPS no celular e o sistema rastreia a posição em tempo real via Socket.IO. Os pais acompanham pelo Portal do Responsável e recebem notificações quando o ônibus está próximo. O embarque é registrado por QR Code." } },
+          { "@type": "Question", "name": "Quanto tempo leva para implantar?", "acceptedAnswer": { "@type": "Answer", "text": "A implantação completa leva em média de 2 a 4 semanas, dependendo do tamanho da rede escolar. Inclui configuração do sistema, importação de dados, treinamento da equipe e acompanhamento inicial." } },
+          { "@type": "Question", "name": "Posso importar dados de outro sistema?", "acceptedAnswer": { "@type": "Answer", "text": "Sim. Oferecemos importação via planilhas Excel/CSV. Nossa equipe auxilia na migração completa para garantir que nenhum dado seja perdido na transição." } }
+        ]
       }
-    },
-    "featureList": ["Gestão de Alunos", "Transporte Escolar com GPS", "Merenda PNAE", "Diário Digital", "Boletim", "Dashboard 360"]
+    ]
   }
   </script>
 </head>
