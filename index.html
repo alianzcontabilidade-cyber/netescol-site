@@ -31,7 +31,7 @@
   <meta name="twitter:image" content="https://www.netescol.com.br/og-image.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <!-- Schema.org JSON-LD -->
   <script type="application/ld+json">
@@ -81,8 +81,8 @@
   <!-- NAVBAR -->
   <nav class="navbar" id="navbar">
     <div class="nav-container">
-      <a href="https://www.netescol.com.br" class="nav-logo">
-        <div class="netescol-logo netescol-logo-sm"><span>Net</span><span>Esc</span><svg viewBox="0 0 48 48" fill="none"><rect x="6" y="30" width="7" height="14" rx="2" fill="#22c55e" opacity="0.5"/><rect x="16" y="22" width="7" height="22" rx="2" fill="#22c55e" opacity="0.7"/><rect x="26" y="12" width="7" height="32" rx="2" fill="#4ade80"/><rect x="36" y="4" width="7" height="40" rx="2" fill="#22d3ee"/><path d="M8 28 L38 4" stroke="#4ade80" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/><path d="M24 2 L36 7 L24 12 L12 7 Z" fill="#22d3ee" opacity="0.9"/><line x1="24" y1="12" x2="24" y2="18" stroke="#22d3ee" stroke-width="2" opacity="0.7"/></svg><span>l</span></div>
+      <a href="https://www.netescol.com.br" class="nav-logo" aria-label="NetEscol - página inicial">
+        <img src="logo-netescol.svg" alt="NetEscol" class="nav-logo-img" width="168" height="40">
       </a>
       <ul class="nav-links" id="navLinks">
         <li><a href="#quem-somos">Quem Somos</a></li>
@@ -104,7 +104,7 @@
     <div class="hero-container">
       <div class="hero-content">
         <!-- Logo removida do hero - navbar já tem -->
-        <div class="hero-badge">Versão 4.1 - Novo!</div>
+        <div class="hero-badge">Versão 4.2.0 - Novo!</div>
         <h1>Gestão Escolar <span class="highlight typing" id="typingText"></span> para sua prefeitura</h1>
         <p class="hero-desc">
           Alunos, transporte, merenda, notas, frequência, financeiro e muito mais.
@@ -457,52 +457,6 @@
     </div>
   </section>
 
-  <!-- TESTIMONIALS -->
-  <section class="section testimonials-section" id="depoimentos">
-    <div class="section-container">
-      <div class="section-header">
-        <div class="section-tag">Depoimentos</div>
-        <h2 class="section-title">O que dizem nossos clientes</h2>
-        <p class="section-subtitle">Prefeituras que já transformaram sua gestão escolar</p>
-      </div>
-      <div class="testimonials-grid">
-        <div class="testimonial-card fade-up">
-          <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="testimonial-text">O NetEscol revolucionou nossa secretaria de educação. Antes gastávamos horas com planilhas, agora temos tudo integrado e os pais adoram acompanhar o transporte pelo celular.</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">MR</div>
-            <div>
-              <div class="testimonial-name">Maria Rodrigues</div>
-              <div class="testimonial-role">Secretária de Educação</div>
-            </div>
-          </div>
-        </div>
-        <div class="testimonial-card fade-up">
-          <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="testimonial-text">A gestão do transporte escolar era nosso maior desafio. Com o GPS em tempo real e o controle de embarque por QR Code, a segurança dos alunos aumentou muito.</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">JS</div>
-            <div>
-              <div class="testimonial-name">João Santos</div>
-              <div class="testimonial-role">Coordenador de Transporte</div>
-            </div>
-          </div>
-        </div>
-        <div class="testimonial-card fade-up">
-          <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="testimonial-text">O diário digital e o lançamento de notas on-line facilitaram demais a vida dos professores. O boletim sai automaticamente e os pais recebem no portal.</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">AL</div>
-            <div>
-              <div class="testimonial-name">Ana Lima</div>
-              <div class="testimonial-role">Diretora Escolar</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- APLICATIVO -->
   <section class="section app-section" id="aplicativo">
     <div class="section-container">
@@ -546,7 +500,7 @@
               <div class="app-phone-header">
                 <div class="app-phone-logo"><img src="logo-sistema.png" alt="NetEscol"></div>
                 <div class="app-phone-name">NetEscol</div>
-                <div class="app-phone-version">v4.1.0</div>
+                <div class="app-phone-version">v4.2.0</div>
               </div>
               <div class="app-phone-cards">
                 <div class="app-phone-card">
@@ -686,6 +640,10 @@
             <label for="mensagem">Mensagem</label>
             <textarea id="mensagem" name="mensagem" rows="3" placeholder="Conte um pouco sobre sua necessidade..."></textarea>
           </div>
+          <div class="hp-field" aria-hidden="true">
+            <label for="website">Não preencha este campo</label>
+            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+          </div>
           <button type="submit" class="btn btn-primary btn-submit" data-event="click_demo">Solicitar Demonstração Gratuita</button>
           <p class="form-note">Responderemos em até 24 horas úteis.</p>
         </form>
@@ -703,8 +661,8 @@
     <div class="footer-container">
       <div class="footer-grid">
         <div>
-          <a href="#" class="nav-logo" style="margin-bottom: 12px; display: inline-flex;">
-            <div class="netescol-logo netescol-logo-md"><span>Net</span><span>Esc</span><svg viewBox="0 0 48 48" fill="none"><rect x="6" y="30" width="7" height="14" rx="2" fill="#22c55e" opacity="0.5"/><rect x="16" y="22" width="7" height="22" rx="2" fill="#22c55e" opacity="0.7"/><rect x="26" y="12" width="7" height="32" rx="2" fill="#4ade80"/><rect x="36" y="4" width="7" height="40" rx="2" fill="#22d3ee"/><path d="M8 28 L38 4" stroke="#4ade80" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/><path d="M24 2 L36 7 L24 12 L12 7 Z" fill="#22d3ee" opacity="0.9"/><line x1="24" y1="12" x2="24" y2="18" stroke="#22d3ee" stroke-width="2" opacity="0.7"/></svg><span>l</span></div>
+          <a href="#" class="nav-logo footer-logo" aria-label="NetEscol">
+            <img src="logo-netescol.svg" alt="NetEscol" class="footer-logo-img" width="220" height="52">
           </a>
           <p class="footer-brand-desc">Plataforma completa de gestão escolar municipal. Desenvolvido com tecnologia moderna para transformar a educação pública.</p>
         </div>

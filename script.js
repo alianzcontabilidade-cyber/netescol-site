@@ -177,9 +177,18 @@ if (contactForm) {
   contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const btn = contactForm.querySelector('.btn-submit');
+    // Honeypot: se o campo invisível "website" foi preenchido, é bot
+    const hp = contactForm.querySelector('input[name="website"]');
+    if (hp && hp.value.trim() !== '') {
+      // Finge sucesso para o bot não tentar de novo
+      contactForm.style.display = 'none';
+      formSuccess.style.display = 'block';
+      return;
+    }
     btn.disabled = true;
     btn.textContent = 'Enviando...';
     const data = Object.fromEntries(new FormData(contactForm));
+    delete data.website;
     try {
       const res = await fetch(contactForm.action, {
         method: 'POST',
