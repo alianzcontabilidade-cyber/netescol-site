@@ -1662,6 +1662,10 @@ body {
 
   /* Back to top */
   .back-to-top { bottom: 16px; right: 76px; width: 42px; height: 42px; }
+
+  /* Logo no navbar */
+  .netescol-logo-sm span { font-size: 22px; }
+  .netescol-logo-sm svg { width: 28px; height: 28px; }
 }
 
 /* Mobile pequeno */
@@ -1673,6 +1677,8 @@ body {
   .steps-grid { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; }
   .about-stats { grid-template-columns: 1fr 1fr; }
+  .netescol-logo-sm span { font-size: 20px; }
+  .netescol-logo-sm svg { width: 24px; height: 24px; }
 }
 
 /* ===== PLANOS ===== */
@@ -1892,23 +1898,31 @@ body {
   overflow: hidden;
 }
 
-/* Logo NetEscol - SVG único como fonte de verdade */
-.nav-logo-img {
-  height: 40px;
-  width: auto;
-  display: block;
+.netescol-logo {
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1;
+  letter-spacing: -1px;
 }
-.footer-logo-img {
-  height: 52px;
-  width: auto;
-  display: block;
+.netescol-logo svg { margin-bottom: -2px; }
+.netescol-logo p {
+  width: 100%;
+  font-weight: 300;
+  color: #94a3b8;
+  letter-spacing: 2px;
+  margin-top: 4px;
 }
-@media (max-width: 768px) {
-  .nav-logo-img { height: 34px; }
-}
-@media (max-width: 480px) {
-  .nav-logo-img { height: 30px; }
-}
+.netescol-logo-sm span { font-size: 28px; }
+.netescol-logo-sm svg { width: 34px; height: 34px; }
+.netescol-logo-md span { font-size: 32px; }
+.netescol-logo-md svg { width: 38px; height: 38px; }
+.netescol-logo-lg span { font-size: 64px; }
+.netescol-logo-lg svg { width: 72px; height: 72px; }
+.netescol-logo-lg p { font-size: 18px; margin-left: 2px; }
 
 /* ===== BOTAO SISTEMA NAVBAR ===== */
 .nav-sistema {
