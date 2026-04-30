@@ -56,13 +56,6 @@ document.querySelectorAll('.faq-question').forEach(btn => {
   });
 });
 
-// Skip navigation link (accessibility)
-const skipLink = document.createElement('a');
-skipLink.href = '#contato';
-skipLink.className = 'skip-nav';
-skipLink.textContent = 'Pular para o conteudo';
-document.body.insertBefore(skipLink, document.body.firstChild);
-
 // Focus visible styles for all interactive elements
 document.querySelectorAll('a, button, input, textarea, [tabindex]').forEach(el => {
   el.addEventListener('focus', () => el.classList.add('focus-visible'));
