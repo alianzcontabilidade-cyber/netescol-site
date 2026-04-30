@@ -786,75 +786,6 @@ body {
   line-height: 1.6;
 }
 
-/* ===== TESTIMONIALS ===== */
-.testimonials-section {
-  background: var(--bg-alt);
-}
-
-.testimonials-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 24px;
-}
-
-.testimonial-card {
-  background: white;
-  border-radius: var(--radius-lg);
-  padding: 32px;
-  box-shadow: var(--shadow);
-  position: relative;
-}
-
-.testimonial-card::before {
-  content: '\201C';
-  position: absolute;
-  top: 16px;
-  left: 24px;
-  font-size: 60px;
-  color: var(--accent);
-  opacity: 0.2;
-  line-height: 1;
-  font-family: Georgia, serif;
-}
-
-.testimonial-text {
-  font-size: 15px;
-  color: var(--text);
-  line-height: 1.7;
-  margin-bottom: 20px;
-  font-style: italic;
-}
-
-.testimonial-author {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.testimonial-avatar {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--primary), var(--accent));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-weight: 700;
-  font-size: 16px;
-}
-
-.testimonial-name {
-  font-weight: 600;
-  color: var(--primary-dark);
-  font-size: 15px;
-}
-
-.testimonial-role {
-  font-size: 13px;
-  color: var(--text-light);
-}
-
 /* ===== FAQ ===== */
 .faq-list {
   max-width: 720px;
@@ -1474,13 +1405,6 @@ body {
 }
 
 /* ===== STARS ===== */
-.testimonial-stars {
-  color: #F59E0B;
-  font-size: 16px;
-  letter-spacing: 2px;
-  margin-bottom: 12px;
-}
-
 /* ===== SCREENSHOTS SECTION ===== */
 .screenshots-section {
   background: white;
@@ -1679,54 +1603,6 @@ body {
   .about-stats { grid-template-columns: 1fr 1fr; }
   .netescol-logo-sm span { font-size: 20px; }
   .netescol-logo-sm svg { width: 24px; height: 24px; }
-}
-
-/* ===== PLANOS ===== */
-.plans-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-.plan-card {
-  background: var(--white);
-  border: 2px solid #E2E8F0;
-  border-radius: var(--radius-lg);
-  padding: 36px 28px;
-  text-align: center;
-  position: relative;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-.plan-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
-.plan-featured {
-  border-color: var(--accent);
-  background: linear-gradient(180deg, #F0FDF4 0%, var(--white) 40%);
-  transform: scale(1.04);
-}
-.plan-featured:hover { transform: scale(1.04) translateY(-4px); }
-.plan-badge {
-  position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
-  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
-  color: white; font-size: 12px; font-weight: 700; padding: 4px 18px;
-  border-radius: 20px; white-space: nowrap;
-}
-.plan-name { font-size: 22px; font-weight: 800; color: var(--primary); margin-bottom: 8px; }
-.plan-price { font-size: 38px; font-weight: 900; color: var(--primary); }
-.plan-price span { font-size: 16px; font-weight: 400; color: var(--text-light); }
-.plan-desc { font-size: 14px; color: var(--text-light); margin: 8px 0 20px; }
-.plan-features { list-style: none; text-align: left; margin-bottom: 24px; }
-.plan-features li {
-  font-size: 14px; color: var(--text); padding: 8px 0;
-  border-bottom: 1px solid #F1F5F9;
-  display: flex; align-items: center; gap: 8px;
-}
-.plan-features li::before { content: "\2713"; color: var(--accent); font-weight: 700; }
-.plan-btn { width: 100%; display: block; text-align: center; }
-
-@media (max-width: 768px) {
-  .plans-grid { grid-template-columns: 1fr; max-width: 400px; }
-  .plan-featured { transform: scale(1); }
 }
 
 /* ===== CONTATO / FORMULARIO ===== */
