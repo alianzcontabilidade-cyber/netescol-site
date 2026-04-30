@@ -40,6 +40,7 @@
   <meta name="twitter:image:alt" content="NetEscol - Sistema de Gestão Escolar Municipal">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="//app.netescol.com.br">
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
@@ -476,7 +477,10 @@
       <div class="screenshots-grid">
         <div class="fade-up" style="text-align:center;">
           <div class="screenshot-phone">
-            <img src="assets/images/app-screenshot.png" alt="NetEscol - Portal do Responsável no celular" width="320" height="640" loading="lazy" decoding="async">
+            <picture>
+              <source srcset="assets/images/app-screenshot.webp" type="image/webp">
+              <img src="assets/images/app-screenshot.png" alt="NetEscol - Portal do Responsável no celular" width="320" height="640" loading="lazy" decoding="async">
+            </picture>
           </div>
         </div>
         <div class="fade-up">
