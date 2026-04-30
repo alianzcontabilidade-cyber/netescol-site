@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página não encontrada - NetEscol</title>
+  <meta name="description" content="A página que você procura não foi encontrada. Volte ao início ou use os links abaixo para continuar navegando no NetEscol.">
+  <meta name="robots" content="noindex,follow">
+  <meta name="theme-color" content="#1e3a5f">
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg?v=2">
+  <link rel="icon" type="image/png" href="assets/images/favicon.png?v=2">
+  <link rel="apple-touch-icon" href="assets/images/favicon.png?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 24px;
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #2a5a8c 100%);
+      color: white;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      overflow: hidden;
+      position: relative;
+    }
+    body::before {
+      content: '';
+      position: absolute;
+      top: -30%;
+      right: -20%;
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, rgba(34,197,94,0.12) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    body::after {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      left: -10%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(34,211,238,0.08) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .container {
+      max-width: 560px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    .code {
+      font-size: clamp(96px, 18vw, 160px);
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -4px;
+      background: linear-gradient(135deg, #4ade80, #22d3ee);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 16px;
+      font-variant-numeric: tabular-nums;
+    }
+    h1 {
+      font-size: clamp(24px, 4vw, 32px);
+      font-weight: 700;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+    p {
+      font-size: 17px;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.6;
+      margin-bottom: 32px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      color: white;
+      box-shadow: 0 4px 12px rgba(34,197,94,0.3);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(34,197,94,0.4);
+    }
+    .btn-outline {
+      background: rgba(255,255,255,0.05);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    .btn-outline:hover {
+      background: rgba(255,255,255,0.1);
+      transform: translateY(-2px);
+    }
+    .links {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      flex-wrap: wrap;
+      font-size: 14px;
+    }
+    .links a {
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .links a:hover { color: rgba(255,255,255,0.95); }
+    :focus-visible {
+      outline: 3px solid #4ade80;
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <div class="code" aria-hidden="true">404</div>
+    <h1>Página não encontrada</h1>
+    <p>A página que você procura pode ter sido movida, renomeada ou nunca existiu. Volte ao início ou use os atalhos abaixo.</p>
+    <div class="actions">
+      <a href="/" class="btn btn-primary">Voltar ao início</a>
+      <a href="/#contato" class="btn btn-outline">Falar conosco</a>
+    </div>
+    <div class="links">
+      <a href="/#modulos">Módulos</a>
+      <a href="/#recursos">Recursos</a>
+      <a href="/#faq">FAQ</a>
+      <a href="/status.html">Status</a>
+    </div>
+  </main>
+</body>
+</html>
