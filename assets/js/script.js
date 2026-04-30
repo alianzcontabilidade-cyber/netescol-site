@@ -79,20 +79,30 @@ backToTop.addEventListener('click', () => {
 const mobileBtn = document.getElementById('navMobileBtn');
 const navLinks = document.getElementById('navLinks');
 mobileBtn.addEventListener('click', () => {
-  navLinks.classList.toggle('active');
+  const isOpen = navLinks.classList.toggle('active');
+  mobileBtn.setAttribute('aria-expanded', String(isOpen));
 });
 
 navLinks.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => navLinks.classList.remove('active'));
+  link.addEventListener('click', () => {
+    navLinks.classList.remove('active');
+    mobileBtn.setAttribute('aria-expanded', 'false');
+  });
 });
 
-// FAQ accordion
+// FAQ accordion (mantém aria-expanded sincronizado)
 document.querySelectorAll('.faq-question').forEach(btn => {
   btn.addEventListener('click', () => {
     const item = btn.parentElement;
     const wasOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-    if (!wasOpen) item.classList.add('open');
+    document.querySelectorAll('.faq-item').forEach(i => {
+      i.classList.remove('open');
+      i.querySelector('.faq-question')?.setAttribute('aria-expanded', 'false');
+    });
+    if (!wasOpen) {
+      item.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+    }
   });
 });
 

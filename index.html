@@ -138,7 +138,7 @@
         <li><a href="#contato" class="nav-cta">Fale Conosco</a></li>
         <li><a href="https://app.netescol.com.br" target="_blank" rel="noopener noreferrer" class="nav-sistema">&#128274; Acessar Sistema</a></li>
       </ul>
-      <button class="nav-mobile-btn" id="navMobileBtn" aria-label="Menu">
+      <button class="nav-mobile-btn" id="navMobileBtn" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -597,37 +597,37 @@
       </div>
       <div class="faq-list">
         <div class="faq-item">
-          <button class="faq-question">O sistema funciona no celular?</button>
+          <button class="faq-question" aria-expanded="false">O sistema funciona no celular?</button>
           <div class="faq-answer">
             <div class="faq-answer-inner">Sim! O NetEscol é um Progressive Web App (PWA), ou seja, funciona como um aplicativo nativo no celular, tablet e computador. Basta acessar pelo navegador e adicionar à tela inicial. Funciona até mesmo off-line.</div>
           </div>
         </div>
         <div class="faq-item">
-          <button class="faq-question">Preciso instalar algo no computador?</button>
+          <button class="faq-question" aria-expanded="false">Preciso instalar algo no computador?</button>
           <div class="faq-answer">
             <div class="faq-answer-inner">Não! O NetEscol é 100% na nuvem. Você acessa pelo navegador de qualquer computador ou celular. Não precisa instalar nenhum programa, e as atualizações são automáticas.</div>
           </div>
         </div>
         <div class="faq-item">
-          <button class="faq-question">Os dados ficam seguros?</button>
+          <button class="faq-question" aria-expanded="false">Os dados ficam seguros?</button>
           <div class="faq-answer">
             <div class="faq-answer-inner">Absolutamente. Usamos criptografia de ponta a ponta, autenticação JWT segura, proteção contra SQL Injection, XSS e outros ataques. O sistema é compatível com a LGPD e cada prefeitura tem seus dados completamente isolados (multitenant).</div>
           </div>
         </div>
         <div class="faq-item">
-          <button class="faq-question">Como funciona o GPS do transporte?</button>
+          <button class="faq-question" aria-expanded="false">Como funciona o GPS do transporte?</button>
           <div class="faq-answer">
             <div class="faq-answer-inner">O motorista ativa o GPS no celular e o sistema rastreia a posição em tempo real via Socket.IO. Os pais podem acompanhar pelo Portal do Responsável e recebem notificações quando o ônibus está próximo. O embarque é registrado por QR Code.</div>
           </div>
         </div>
         <div class="faq-item">
-          <button class="faq-question">Quanto tempo leva para implantar?</button>
+          <button class="faq-question" aria-expanded="false">Quanto tempo leva para implantar?</button>
           <div class="faq-answer">
             <div class="faq-answer-inner">A implantação completa leva em média de 2 a 4 semanas, dependendo do tamanho da rede escolar. Inclui configuração do sistema, importação de dados, treinamento da equipe e acompanhamento inicial.</div>
           </div>
         </div>
         <div class="faq-item">
-          <button class="faq-question">Posso importar dados de outro sistema?</button>
+          <button class="faq-question" aria-expanded="false">Posso importar dados de outro sistema?</button>
           <div class="faq-answer">
             <div class="faq-answer-inner">Sim! Oferecemos importação de dados via planilhas Excel/CSV. Nossa equipe auxilia na migração completa para garantir que nenhum dado seja perdido na transição.</div>
           </div>
