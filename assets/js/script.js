@@ -56,12 +56,6 @@ document.querySelectorAll('.faq-question').forEach(btn => {
   });
 });
 
-// Focus visible styles for all interactive elements
-document.querySelectorAll('a, button, input, textarea, [tabindex]').forEach(el => {
-  el.addEventListener('focus', () => el.classList.add('focus-visible'));
-  el.addEventListener('blur', () => el.classList.remove('focus-visible'));
-});
-
 // Navbar scroll effect + Progress bar + Back to top
 const navbar = document.getElementById('navbar');
 const scrollProgress = document.getElementById('scrollProgress');
